@@ -8,65 +8,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SHIFT Planner: Scientific Paper Overview</title>
 
-  <!-- Google Fonts: Montserrat for headings, Roboto Mono for code blocks -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono&display=swap"
     rel="stylesheet" />
 
-  <!-- Bulma CSS -->
+  <!-- Bulma & Icons -->
   <link rel="stylesheet" href="./static/css/bulma.min.css" />
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
-  <link rel="stylesheet" href="./static/css/index.css" />
 
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
 
   <style>
-    /* Global Styles */
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #f4f7f9;
-      color: #2c3e50;
-      line-height: 1.6;
+    :root {
+      --brand-primary: #3498db;
+      --brand-dark: #2c3e50;
+      --brand-light: #f4f7f9;
+      --overlay-dark: rgba(44, 62, 80, 0.65);
     }
 
+    html,
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--brand-light);
+      color: var(--brand-dark);
+      scroll-behavior: smooth;
+    }
+
+    /* Links */
     a {
-      transition: color 0.3s ease;
+      transition: color 0.25s ease;
     }
 
     a:hover {
-      color: #3498db;
+      color: var(--brand-primary);
     }
 
-    /* Heading Styles */
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    /* Code Block Styles */
+    /* Code */
     pre code,
     code {
       font-family: 'Roboto Mono', monospace;
-      background-color: #ecf0f1;
-      padding: 0.5rem;
+      background: #ecf0f1;
+      padding: .35rem .55rem;
       border-radius: 4px;
       color: #e74c3c;
     }
 
     /* Navbar */
     .navbar {
-      background-color: #34495e;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      background: transparent;
+      transition: background .3s, box-shadow .3s;
+    }
+
+    .navbar.is-solid {
+      background: var(--brand-dark);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
     }
 
     .navbar-item,
@@ -76,188 +77,142 @@
 
     .navbar-item:hover,
     .navbar-link:hover {
-      background-color: rgba(236, 240, 241, 0.1);
+      background: rgba(236, 240, 241, .15);
     }
 
-    /* Hero Section */
-    .hero.is-primary {
-      background: linear-gradient(135deg, #34495e, #2c3e50);
-      color: #ecf0f1;
+    /* Hero */
+    .hero-background {
+      position: relative;
+      background: url('./assets/title_background.png') center/cover no-repeat;
     }
 
-    .hero .title {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
+    .hero-background::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--overlay-dark);
     }
 
-    .hero .subtitle {
-      font-size: 1.5rem;
-      font-weight: 400;
+    .hero-background .hero-body {
+      position: relative;
+      z-index: 1;
     }
 
-    /* Card Styles */
+    .hero-title {
+      font-size: 3.25rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .hero-subtitle {
+      font-size: 1.35rem;
+      color: #ffffffd8;
+    }
+
+    /* Buttons */
+    .button.is-brand {
+      background: var(--brand-primary);
+      color: #fff;
+    }
+
+    .button.is-brand:hover {
+      background: #2980b9;
+    }
+
+    /* Cards */
     .card {
       border: 1px solid #dfe6e9;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, .06);
     }
 
-    .card-content {
-      padding: 1.5rem;
-    }
-
-    /* Responsive Video Container with Decoration */
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      /* 16:9 ratio */
-      height: 0;
-      overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      border: 2px solid #3498db;
-      margin-bottom: 1rem;
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    /* Section Spacing */
+    /* Sections */
     section.section {
-      padding: 3rem 1.5rem;
+      padding: 4rem 1.5rem;
     }
 
     /* Footer */
     footer.footer {
-      background-color: #34495e;
+      background: var(--brand-dark);
       color: #bdc3c7;
-      padding: 2rem 1.5rem;
+      padding: 2.5rem 1.5rem;
+      font-size: .9rem;
     }
 
     footer.footer a {
       color: #1abc9c;
-    }
-
-    /* Image Styles */
-    .content img {
-      border-radius: 4px;
-      margin-bottom: 1rem;
-    }
-
-    /* Copy Button Styles */
-    .copy-btn {
-      margin-top: 0.5rem;
-      background-color: #3498db;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-    }
-
-    .copy-btn:hover {
-      background-color: #2980b9;
     }
   </style>
 </head>
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="#">
-        <strong>SHIFT Planner</strong>
-      </a>
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-    <div id="navbarBasic" class="navbar-menu">
-      <div class="navbar-end">
-        <a href="#abstract" class="navbar-item">Abstract</a>
-        <a href="#video" class="navbar-item">Video</a>
-        <a href="#results" class="navbar-item">Results</a>
-        <a href="#bibtex" class="navbar-item">BibTeX</a>
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item has-text-weight-bold" href="#home">SHIFT Planner</a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="navbarBasic" class="navbar-menu">
+        <div class="navbar-end">
+          <a href="#abstract" class="navbar-item">Abstract</a>
+          <a href="#video" class="navbar-item">Video</a>
+          <a href="#results" class="navbar-item">Results</a>
+          <a href="#bibtex" class="navbar-item">BibTeX</a>
+        </div>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero is-primary is-bold">
+  <!-- Hero -->
+  <section class="hero is-fullheight hero-background" id="home">
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h1 class="title">SHIFT Planner</h1>
-        <h2 class="subtitle">
-          Speedy Hybrid Iterative Field and Segmented Trajectory Optimization with IKD-tree for Uniform Lightweight
-          Coverage
-        </h2>
-        <h3 class="subtitle">IROS 2025</h3>
-        <div class="buttons is-centered">
-          <a href="https://arxiv.org/pdf/2412.10706" target="_blank" class="button is-link is-rounded">
-            <span class="icon"><i class="fas fa-file-pdf"></i></span>
-            <span>Paper</span>
-          </a>
-          <a href="https://arxiv.org/abs/2412.10706" target="_blank" class="button is-link is-rounded">
-            <span class="icon"><i class="ai ai-arxiv"></i></span>
-            <span>arXiv</span>
-          </a>
+        <h1 class="hero-title">SHIFT Planner</h1>
+        <h2 class="hero-subtitle mb-4">Speedy Hybrid Iterative Field and Segmented Trajectory Optimization with IKD-tree
+          for Uniform Lightweight Coverage</h2>
+        <h3 class="subtitle has-text-weight-semibold has-text-white">Target: IROS 2025</h3>
+        <div class="buttons is-centered mt-5">
+          <a href="https://arxiv.org/pdf/2412.10706" target="_blank" class="button is-brand is-rounded">
+            <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span></a>
+          <a href="https://arxiv.org/abs/2412.10706" target="_blank" class="button is-brand is-rounded">
+            <span class="icon"><i class="fas fa-file-alt"></i></span><span>arXiv</span></a>
           <a href="https://github.com/fanzexuan/SHIFTPlanner-Robotics?tab=readme-ov-file" target="_blank"
-            class="button is-link is-rounded">
-            <span class="icon"><i class="fab fa-github"></i></span>
-            <span>Code</span>
-          </a>
-          <a href="https://www.youtube.com/watch?v=cxiCHMtgtsc" target="_blank" class="button is-link is-rounded">
-            <span class="icon"><i class="fab fa-youtube"></i></span>
-            <span>Video</span>
-          </a>
+            class="button is-brand is-rounded">
+            <span class="icon"><i class="fab fa-github"></i></span><span>Code</span></a>
+          <a href="https://www.youtube.com/watch?v=cxiCHMtgtsc" target="_blank" class="button is-brand is-rounded">
+            <span class="icon"><i class="fab fa-youtube"></i></span><span>Video</span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Abstract Section -->
+  <!-- Abstract -->
   <section class="section" id="abstract">
     <div class="container">
       <div class="card">
         <div class="card-content">
           <h2 class="title is-3">Abstract</h2>
           <div class="content">
-            <p>
-              Achieving uniform coverage in dynamic environments is essential for autonomous robots tasked with
-              cleaning,
-              inspection, and agricultural operations. However, existing approaches often prioritize path length
-              and time optimality, neglecting environmental attributes such as terrain, dirtiness, dryness, and varying
-              elevations in coverage trajectory planning. To address this limitation,
-              we propose the <strong>SHIFT Planner</strong> framework, which integrates semantic mapping, adaptive
-              coverage
-              planning, and real-time obstacle avoidance to enable comprehensive coverage across diverse terrains
-              and semantic attributes. Key innovations include:
+            <p>Achieving uniform coverage in dynamic environments is essential for autonomous robots tasked with
+              cleaning, inspection, and agricultural operations. However, existing approaches often prioritize path
+              length and time optimality, neglecting environmental attributes such as terrain, dirtiness, dryness, and
+              varying elevations in coverage trajectory planning. To address this limitation, we propose the
+              <strong>SHIFT Planner</strong> framework, which integrates semantic mapping, adaptive coverage planning,
+              and real-time obstacle avoidance to enable comprehensive coverage across diverse terrains and semantic
+              attributes. Key innovations include:
             </p>
             <ul>
-              <li>
-                <strong>Radiant Field-Informed Coverage Planning (RFICP) algorithm:</strong>
-                Generates trajectories that adapt to terrain variations by aligning with environmental changes.
-                Additionally, a Gaussian diffusion field is employed to ensure efficient and uniform coverage under
-                varying
-                environmental conditions influenced by target semantic attributes.
-              </li>
-              <li>
-                <strong>Incremental IKD-tree Sliding Window Optimization (IKD-SWOpt):</strong>
-                Optimizes trajectory segments within and outside waypoint safety zones by evaluating and refining
-                non-compliant
-                segments through an adaptive sliding window approach. This method not only reduces computational
-                overhead but
-                also guarantees the quality of real-time obstacle avoidance trajectories.
-              </li>
+              <li><strong>Radiant Field-Informed Coverage Planning (RFICP) algorithm:</strong> Generates trajectories
+                that adapt to terrain variations by aligning with environmental changes. Additionally, a Gaussian
+                diffusion field is employed to ensure efficient and uniform coverage under varying environmental
+                conditions influenced by target semantic attributes.</li>
+              <li><strong>Incremental IKD-tree Sliding Window Optimization (IKD-SWOpt):</strong> Optimizes trajectory
+                segments within and outside waypoint safety zones by evaluating and refining non-compliant segments
+                through an adaptive sliding window approach. This method not only reduces computational overhead but
+                also guarantees the quality of real-time obstacle avoidance trajectories.</li>
             </ul>
           </div>
         </div>
@@ -265,15 +220,16 @@
     </div>
   </section>
 
-  <!-- Video Section -->
+  <!-- Video -->
   <section class="section" id="video">
     <div class="container">
       <div class="card">
         <div class="card-content">
           <h2 class="title is-3 has-text-centered">Video</h2>
-          <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/cxiCHMtgtsc" allow="autoplay; encrypted-media"
-              allowfullscreen></iframe>
+          <div
+            style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);border:2px solid var(--brand-primary);margin-bottom:1rem;">
+            <iframe src="https://www.youtube.com/embed/cxiCHMtgtsc" allow="autoplay; encrypted-media" allowfullscreen
+              style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>
           </div>
           <p class="has-text-centered is-italic">Video Demonstration: SHIFT Planner Process</p>
         </div>
@@ -281,7 +237,7 @@
     </div>
   </section>
 
-  <!-- Results Section -->
+  <!-- Results & Demonstrations -->
   <section class="section" id="results">
     <div class="container">
       <div class="card">
@@ -290,130 +246,94 @@
           <div class="content">
             <!-- RFICP: Surface Extraction -->
             <h3 class="title is-4">RFICP: Surface Extraction</h3>
-            <p>
-              We use a differential geometry approach to fit a smooth surface to the sensor-derived point cloud,
-              then compute and filter curvature metrics (Gaussian and mean curvatures) to remove noise, slender
-              obstacles,
-              or protrusions that do not contribute to meaningful coverage. This yields a continuous surface
-              representation
-              that can be efficiently queried for elevation values during path planning.
-            </p>
+            <p>We use a differential geometry approach to fit a smooth surface to the sensor-derived point cloud, then
+              compute and filter curvature metrics (Gaussian and mean curvatures) to remove noise, slender obstacles, or
+              protrusions that do not contribute to meaningful coverage. This yields a continuous surface representation
+              that can be efficiently queried for elevation values during path planning.</p>
             <div class="columns is-centered">
               <div class="column is-half">
-                <figure class="image">
-                  <img src="assets/surface_extraction/curvature_computation.png" alt="Curvature Computation" />
-                </figure>
-                <p class="has-text-centered">
-                  Curvature computation identifies protrusions or high-curvature artifacts
+                <figure class="image"><img src="assets/surface_extraction/curvature_computation.png"
+                    alt="Curvature Computation"></figure>
+                <p class="has-text-centered">Curvature computation identifies protrusions or high-curvature artifacts
                 </p>
               </div>
               <div class="column is-half">
-                <figure class="image">
-                  <img src="assets/surface_extraction/parametric_surface.png" alt="Parametric Surface" />
-                </figure>
-                <p class="has-text-centered">
-                  Surface normals guide local filtering
-                </p>
+                <figure class="image"><img src="assets/surface_extraction/parametric_surface.png"
+                    alt="Parametric Surface"></figure>
+                <p class="has-text-centered">Surface normals guide local filtering</p>
               </div>
             </div>
-            <figure class="image" style="max-width: 80%; margin: 0 auto;">
-              <img src="assets/surface_extraction/surface_normals.png" alt="Surface Normals" />
-            </figure>
-            <p class="has-text-centered">
-              A smooth parametric surface ready for elevation extraction
-            </p>
+            <figure class="image" style="max-width:80%;margin:0 auto;"><img
+                src="assets/surface_extraction/surface_normals.png" alt="Surface Normals"></figure>
+            <p class="has-text-centered">A smooth parametric surface ready for elevation extraction</p>
 
             <!-- RFICP: Gaussian Diffusion Kernel -->
             <h3 class="title is-4">RFICP: Gaussian Diffusion Kernel</h3>
-            <figure class="image is-3by2">
-              <img src="assets/diffusion.gif" alt="Gaussian Diffusion Kernel" />
-            </figure>
+            <figure class="image is-3by2"><img src="assets/diffusion.gif" alt="Gaussian Diffusion Kernel"></figure>
 
             <!-- RFICP: Speed Adaptive Coverage Path -->
             <h3 class="title is-4">RFICP: Speed Adaptive Coverage Path</h3>
-            <figure class="image" style="max-width: 90%; margin: 0 auto;">
-              <img src="assets/2d_zigzag_pipline.gif" alt="Speed Adaptive Coverage Path" />
-            </figure>
+            <figure class="image" style="max-width:90%;margin:0 auto;"><img src="assets/2d_zigzag_pipline.gif"
+                alt="Speed Adaptive Coverage Path"></figure>
 
             <!-- RFICP: Boustrophedon Coverage Path -->
             <h3 class="title is-4">RFICP: Boustrophedon Coverage Path</h3>
-            <p>
-              Sequence the adjusted landmark points in a boustrophedon (zigzag) pattern to ensure systematic and
-              complete coverage of the terrain.
-            </p>
-            <figure class="image">
-              <img src="assets/boustrophedon_coverage_path.gif" alt="Boustrophedon Coverage Path" />
+            <p>Sequence the adjusted landmark points in a boustrophedon (zigzag) pattern to ensure systematic and
+              complete coverage of the terrain.</p>
+            <figure class="image"><img src="assets/boustrophedon_coverage_path.gif" alt="Boustrophedon Coverage Path">
             </figure>
 
             <!-- RFICP Pipeline -->
             <h3 class="title is-4">RFICP Pipeline</h3>
-            <figure class="image" style="max-width: 90%; margin: 0 auto;">
-              <img src="assets/rficp_pipeline.gif" alt="RFICP Pipeline" />
-            </figure>
-            <p class="has-text-centered">
-              RFICP generates a terrain-conforming coverage trajectory with explicit time and speed modulation based on
-              environmental semantics.
-            </p>
+            <figure class="image" style="max-width:90%;margin:0 auto;"><img src="assets/rficp_pipeline.gif"
+                alt="RFICP Pipeline"></figure>
+            <p class="has-text-centered">RFICP generates a terrain-conforming coverage trajectory with explicit time and
+              speed modulation based on environmental semantics.</p>
 
             <!-- Circular Judgement and Sliding Window -->
             <h3 class="title is-4">Circular Judgement and Sliding Window</h3>
-            <p>
-              Illustration of Circular Judgement in a 2D environment. For each waypoint, a circular region is defined.
+            <p>Illustration of Circular Judgement in a 2D environment. For each waypoint, a circular region is defined.
               We compute a safety score based on obstacle proximity and trajectory continuity. If the score is below a
-              threshold,
-              we perform a sliding window optimization.
-            </p>
-            <figure class="image" style="max-width: 90%; margin: 0 auto;">
-              <img src="assets/2d_circular_judgement.gif" alt="Circular Judgement and Sliding Window" />
-            </figure>
+              threshold, we perform a sliding window optimization.</p>
+            <figure class="image" style="max-width:90%;margin:0 auto;"><img src="assets/2d_circular_judgement.gif"
+                alt="Circular Judgement and Sliding Window"></figure>
 
             <!-- 3D Optimization Animation -->
             <h3 class="title is-4">3D Optimization Animation</h3>
-            <p>
-              Optimization process of trajectory segments within the sliding window of the IKD-SWOpt framework.
-            </p>
+            <p>Optimization process of trajectory segments within the sliding window of the IKD-SWOpt framework.</p>
             <div class="columns is-centered">
               <div class="column is-half">
-                <figure class="image">
-                  <img src="assets/3d_circular/1.gif" alt="3D Optimization 1" />
-                </figure>
+                <figure class="image"><img src="assets/3d_circular/1.gif" alt="3D Optimization 1"></figure>
               </div>
               <div class="column is-half">
-                <figure class="image">
-                  <img src="assets/3d_circular/2.gif" alt="3D Optimization 2" />
-                </figure>
+                <figure class="image"><img src="assets/3d_circular/2.gif" alt="3D Optimization 2"></figure>
               </div>
             </div>
 
-            <!-- 3D and 2D Path Results -->
+            <!-- 3D & 2D Path Results -->
             <h3 class="title is-4">Results on 3D and 2D Path</h3>
             <div class="columns is-centered">
               <div class="column is-half">
-                <figure class="image">
-                  <img src="assets/3d_path_optimization/1.gif" alt="3D Path Optimization 1" />
+                <figure class="image"><img src="assets/3d_path_optimization/1.gif" alt="3D Path Optimization 1">
                 </figure>
               </div>
               <div class="column is-half">
-                <figure class="image">
-                  <img src="assets/3d_path_optimization/2.gif" alt="3D Path Optimization 2" />
+                <figure class="image"><img src="assets/3d_path_optimization/2.gif" alt="3D Path Optimization 2">
                 </figure>
               </div>
             </div>
-            <figure class="image" style="max-width: 100%; margin: 0 auto;">
-              <img src="assets/path_optimization_smoothing_process.gif" alt="2D Path Optimization" />
-            </figure>
-            <p class="has-text-centered">
-              Illustration of the <strong>SHIFT Planner</strong> path optimization. The red dashed line represents the
-              initial path,
-              blue represents the optimized path, and green represents the smooth path.
-            </p>
+            <figure class="image" style="max-width:100%;margin:0 auto;"><img
+                src="assets/path_optimization_smoothing_process.gif" alt="2D Path Optimization"></figure>
+            <p class="has-text-centered">Illustration of the <strong>SHIFT Planner</strong> path optimization. The red
+              dashed line represents the initial path, blue represents the optimized path, and green represents the
+              smooth path.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- BibTeX Section with Copy Button -->
+  <!-- BibTeX -->
   <section class="section" id="bibtex">
     <div class="container">
       <div class="card">
@@ -421,11 +341,11 @@
           <h2 class="title is-3">BibTeX</h2>
           <pre><code id="bibtex-code">@inproceedings{frank2025shift,
   title     = {SHIFT Planner: Speedy Hybrid Iterative Field and Segmented Trajectory Optimization with IKD-tree for Uniform Lightweight Coverage},
-  author    = {Zexuan Fan, Sunchun Zhou, Hengye Yang, Junyi Cai, Ran Cheng, Lige Liu, Tao Sun},
+  author    = {Zexuan Fan and Sunchun Zhou and Hengye Yang and Junyi Cai and Ran Cheng and Lige Liu and Tao Sun},
   booktitle = {IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
   year      = {2025}
 }</code></pre>
-          <button class="copy-btn" onclick="copyBibtex()">Copy BibTeX</button>
+          <button class="button is-brand is-small" onclick="copyBibtex()">Copy BibTeX</button>
         </div>
       </div>
     </div>
@@ -434,46 +354,35 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container has-text-centered">
-      <p>
-        This website is licensed under a
-        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
-          Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-      </p>
-      <p>
-        It borrows the source code of
-        <a href="https://github.com/nerfies/nerfies.github.io" target="_blank">
-          this website</a>. We would like to thank Utkarsh Sinha and Keunhong Park.
-      </p>
+      <p>Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA
+          4.0</a></p>
+      <p>Website template inspired by <a href="https://github.com/nerfies/nerfies.github.io"
+          target="_blank">nerfies.github.io</a></p>
     </div>
   </footer>
 
   <script>
     // Navbar burger toggle
-    document.addEventListener("DOMContentLoaded", () => {
-      const navbarBurgers = Array.prototype.slice.call(
-        document.querySelectorAll(".navbar-burger"),
-        0
-      );
-      if (navbarBurgers.length > 0) {
-        navbarBurgers.forEach((el) => {
-          el.addEventListener("click", () => {
-            const target = el.dataset.target;
-            const $target = document.getElementById(target);
-            el.classList.toggle("is-active");
-            $target.classList.toggle("is-active");
-          });
-        });
-      }
+    document.addEventListener('DOMContentLoaded', () => {
+      const burgers = Array.from(document.querySelectorAll('.navbar-burger'));
+      burgers.forEach(burger => burger.addEventListener('click', () => {
+        const target = document.getElementById(burger.dataset.target);
+        burger.classList.toggle('is-active');
+        target.classList.toggle('is-active');
+      }));
     });
 
-    // Function to copy BibTeX content to clipboard
+    // Solid navbar on scroll
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 60) navbar.classList.add('is-solid');
+      else navbar.classList.remove('is-solid');
+    });
+
+    // BibTeX copy
     function copyBibtex() {
-      const bibtexText = document.getElementById('bibtex-code').innerText;
-      navigator.clipboard.writeText(bibtexText).then(() => {
-        alert("BibTeX copied to clipboard!");
-      }, (err) => {
-        alert("Failed to copy BibTeX.");
-      });
+      navigator.clipboard.writeText(document.getElementById('bibtex-code').innerText)
+        .then(() => alert('BibTeX copied to clipboard!'));
     }
   </script>
 </body>
