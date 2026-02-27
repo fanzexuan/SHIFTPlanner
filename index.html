@@ -196,13 +196,12 @@
         <div class="card-content">
           <h2 class="title is-3">Abstract</h2>
           <div class="content">
-            <p>Achieving uniform coverage in dynamic environments is essential for autonomous robots tasked with
-              cleaning, inspection, and agricultural operations. However, existing approaches often prioritize path
-              length and time optimality, neglecting environmental attributes such as terrain, dirtiness, dryness, and
-              varying elevations in coverage trajectory planning. To address this limitation, we propose the
-              <strong>SHIFT Planner</strong> framework, which integrates semantic mapping, adaptive coverage planning,
-              and real-time obstacle avoidance to enable comprehensive coverage across diverse terrains and semantic
-              attributes. Key innovations include:
+            <p>
+              Achieving efficient and uniform coverage in obstacle-laden unknown environments is essential for autonomous 
+              robots in cleaning, inspection and agricultural operations. Unlike most existing approaches that prioritize
+              path length and time optimality, we propose the <strong>SHIFT Planner</strong> framework, which integrates 
+              semantic mapping, adaptive coverage planning, and real-time obstacle avoidance to ensure comprehensive 
+              coverage across diverse terrains and semantic features. Key innovations include:
             </p>
             <ul>
               <li><strong>Radiant Field-Informed Coverage Planning (RFICP) algorithm:</strong> Generates trajectories
@@ -244,29 +243,16 @@
         <div class="card-content">
           <h2 class="title is-3 has-text-centered">Results & Demonstrations</h2>
           <div class="content">
-            <!-- RFICP: Surface Extraction -->
-            <h3 class="title is-4">RFICP: Surface Extraction</h3>
-            <p>We use a differential geometry approach to fit a smooth surface to the sensor-derived point cloud, then
-              compute and filter curvature metrics (Gaussian and mean curvatures) to remove noise, slender obstacles, or
-              protrusions that do not contribute to meaningful coverage. This yields a continuous surface representation
-              that can be efficiently queried for elevation values during path planning.</p>
-            <div class="columns is-centered">
-              <div class="column is-half">
-                <figure class="image"><img src="assets/surface_extraction/curvature_computation.png"
-                    alt="Curvature Computation"></figure>
-                <p class="has-text-centered">Curvature computation identifies protrusions or high-curvature artifacts
-                </p>
-              </div>
-              <div class="column is-half">
-                <figure class="image"><img src="assets/surface_extraction/parametric_surface.png"
-                    alt="Parametric Surface"></figure>
-                <p class="has-text-centered">Surface normals guide local filtering</p>
-              </div>
-            </div>
-            <figure class="image" style="max-width:80%;margin:0 auto;"><img
-                src="assets/surface_extraction/surface_normals.png" alt="Surface Normals"></figure>
-            <p class="has-text-centered">A smooth parametric surface ready for elevation extraction</p>
-
+             <!-- Overall architecture of the SHIFT planner -->
+            <h3 class="title is-4">Overall architecture</h3>
+            <figure class="image" style="max-width:90%;margin:0 auto;"><img src="assets/shift_planner_overview.png"
+                alt="Shift planner overview"></figure>
+            <p class="has-text-centered">Overall architecture of the SHIFT planner. The terrain-derived point cloud data 
+              is initially filtered and integrated into a global map. This map, combined with a semantic map, serves as
+              input for the global planner. RFICP then generates an adaptive coverage trajectory by adjusting the robot’s 
+              speed based on semantic information, while IKD-SWOpt performs real-time refinements of local trajectories 
+              when obstacles are encountered</p>
+            
             <!-- RFICP: Gaussian Diffusion Kernel -->
             <h3 class="title is-4">RFICP: Gaussian Diffusion Kernel</h3>
             <figure class="image is-3by2"><img src="assets/diffusion.gif" alt="Gaussian Diffusion Kernel"></figure>
@@ -340,10 +326,10 @@
         <div class="card-content">
           <h2 class="title is-3">BibTeX</h2>
           <pre><code id="bibtex-code">@inproceedings{frank2025shift,
-  title     = {SHIFT Planner: Speedy Hybrid Iterative Field and Segmented Trajectory Optimization with IKD-tree for Uniform Lightweight Coverage},
-  author    = {Zexuan Fan and Sunchun Zhou and Hengye Yang and Junyi Cai and Ran Cheng and Lige Liu and Tao Sun},
+  title     = {Semantic and Terrain-Aware Trajectory Optimization for Unifrom Coverage in Obstacle-Laden Environments},
+  author    = {Zexuan Fan and Hengye Yang and Sunchun Zhou and Junyi Cai and Tao Sun and Lige Liu},
   booktitle = {Solving practical planning problems},
-  year      = {2025}
+  year      = {2026}
 }</code></pre>
           <button class="button is-brand is-small" onclick="copyBibtex()">Copy BibTeX</button>
         </div>
